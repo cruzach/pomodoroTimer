@@ -18,8 +18,7 @@ export const Controls = ( props ) => {
 const styles = StyleSheet.create({
     ButtonContainer: {
         flex: 1,
-        flexDirection: 'row',
-        paddingTop: '25%'
+        flexDirection: 'row'
     },
     Button: {
     }

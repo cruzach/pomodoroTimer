@@ -102,10 +102,17 @@ export default class App extends React.Component {
     }
   }
 
-  onChanged(val) {
+  changeWork(val) {
     this.setState({
       workLength: val,
       workMinutes: val
+    })
+  }
+
+  changeBreak(val) {
+    this.setState({
+      breakLength: val,
+      breakMinutes: val
     })
   }
 
@@ -119,6 +126,24 @@ export default class App extends React.Component {
           :
           <Timer minutes={this.state.workMinutes} seconds={this.state.workSeconds} />
         )}
+        <View style={styles.timeSelection}>
+          <Text style={{fontSize: 22}}>Work for: </Text>
+          <TextInput style={{fontSize: 22}}
+            returnKeyType='done' keyboardType='number-pad' 
+            value={`${this.state.workLength}`} 
+            onChangeText={(text) => this.changeWork(text)}
+          />
+          <Text style={{fontSize: 22}}> minutes</Text>
+        </View>
+        <View style={styles.timeSelection}>
+          <Text style={{fontSize: 22}}>Break for: </Text>
+          <TextInput style={{fontSize: 22}}
+            returnKeyType='done' keyboardType='number-pad' 
+            value={`${this.state.breakLength}`} 
+            onChangeText={(text) => this.changeBreak(text)}
+          />
+          <Text style={{fontSize: 22}}> minutes</Text>
+        </View>
         <Controls style={styles.flex1} running={this.state.timerRunning}
           startTimer={() => this.startTimer()}
           stopTimer={() => this.stopTimer()}
@@ -149,6 +174,10 @@ const styles = StyleSheet.create({
   },
   breakText: {
     paddingBottom: 10
+  },
+  timeSelection: {
+    flexDirection: "row",
+    padding: 10,
   },
   flex1: {flex: 1},
 });
